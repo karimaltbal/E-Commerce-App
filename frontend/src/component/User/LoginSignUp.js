@@ -36,9 +36,8 @@ const LoginSignUp = () => {
     const [password, setPassword] = useState("");
 
 
-    const [avatarr, setAvatar] = useState("/Profile.png");
+    const [avatarr, setAvatar] = useState("https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png");
     const [avatarPreview, setAvatarPreview] = useState(imgProfile);
-
 
     const { error, loading, isAuthenticated } = useSelector((state) => state.auth);
 
@@ -52,17 +51,33 @@ const LoginSignUp = () => {
 
 
 
-    const registerSubmit = (e) => {
+    /*const registerSubmit = (e) => {
         e.preventDefault();
 
         const myForm = new FormData();
 
-        const avatar = myForm.append("avatar", avatarr);
+        console.log(avatarr);
+        const namee =  myForm.set("name", name);
+        const avatar = myForm.set("avatar", avatarr);
+        console.log(avatar);
 
-        const registerData = { name, email, password, avatar };
+        const registerData = { name, email, password, avatarr };
         console.log(registerData)
         dispatch(rigesterAction(registerData));
-    };
+    };*/
+
+
+      const registerSubmit = (e) => {
+        e.preventDefault();
+
+        const myForm = new FormData();
+
+        myForm.set("name", name);
+        myForm.set("email", email);
+        myForm.set("password", password);
+        myForm.set("avatar", avatarr);
+        dispatch(rigesterAction(myForm));
+      };
 
 
 
@@ -80,6 +95,7 @@ const LoginSignUp = () => {
         reader.readAsDataURL(e.target.files[0]);
     };
 
+    
 
     const redirect = shipingPage ? shipingPage : "account";
 
